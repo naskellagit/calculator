@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .content {
+      max-width: 1450px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Inter;
+    }
+    .title {
+      margin: 10px 0 115px 0;
+      font-size: 46px;
+      width: 757px;
+      text-align: center;
+    }
+    .form-group {
+      width: 100%;
+      padding: 0 118px;
+      display: flex;
+      justify-content: space-between;
+    }
+    input[type="text"], input[type="number"], select {
+      width: 300px;
+      height: 60px;
+      padding: 12px;
+      border: 1px solid #C3C3C3;
+      font-size: 22px;
+    }
+    #suggestionsAddress {
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+      position: absolute;
+      background: white;
+      width: 300px;
+      z-index: 1000;
+    }
+    .suggestion-item {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .added-block {
+      margin-bottom: 25px;
+    }
+    .add-button {
+      cursor: pointer;
+      font-size: 20px;
+      align-self: flex-start;
+      margin-left: 423px;
+      margin-bottom: 40px;
+    }
+    .calculate-button-block {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      align-self: flex-end;
+      font-size: 22px;
+      padding-right: 115px;
+      margin-bottom: 30px;
+    }
+    .calculate-button-block button {
+      width: 300px;
+      height: 60px;
+      border: none;
+      background-color: #A2A2A2;
+      cursor: pointer;
+      font-size: inherit;
+      color: #fff;
+      position: relative;
+    }
+    .calculate-button-block button:active {
+      top: 1px;
+      right: 1px;
+    }
+    input[type="checkbox"] {
+      width: 30px;
+      height: 30px;
+    }
+    .checkbox-block {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .result-block{
+      width: 100%;
+      padding: 0 118px;
+      position: relative;
+    }
+    .close-result-button{
+      position: absolute;
+      right: 118px;
+      display: none;
+    }
+    .tabs {
+      display: flex;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+    .tab {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      background-color: #f9f9f9;
+    }
+    .tab.active {
+      background-color: white;
+      font-weight: bold;
+    }
+    .tab-content {
+      display: none;
+      border: 1px solid #ccc;
+      padding: 15px;
+      background-color: white;
+    }
+    .tab-content.active {
+      display: block;
+    }
+
+    .tab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-family: sans-serif;
+    }
+
+    .tab-table th,
+    .tab-table td {
+      /* border: 1px solid #ccc; */
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    .tab-table th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+    }
+
+    .tab-table tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    .tab-table tr:hover {
+      background-color: #eef;
+      transition: background-color 0.2s;
+    }
+    .tab-contents{
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h2 class="title">Калькулятор расчета стоимости вывоза строительного мусора</h2>
+    <form class="form-group">
+      <div>
+        <input type="text" placeholder="Введите адрес" id="address" autocomplete="off">
+        <div id="suggestionsAddress" style="display: none;"></div>
+      </div>
+      <div class="added-form-group-block">
+        <div class="added-block">
+          <input id="wasteInput" type="text" placeholder="Введите тип мусора" autocomplete="off">
+          <div id="suggestions" style="border: 1px solid #ccc; display: none; position: absolute; z-index: 10; width: 300px; background: #fff; max-height: 200px; overflow-y: auto;"></div>
+          <input type="number" id="volume" required placeholder="Введите объем" min="0">
+          <select id="unit">
+            <option value="ton">Тонн</option>
+            <option value="cubic">Куб.м</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <span class="add-button" onclick="addMore()">+ добавить ещё</span>
+    <div class="calculate-button-block">
+      <button onclick="calculateButtonHandler()">Расчитать</button>
+      <div class="checkbox-block">
+        <input type="checkbox" id="checkbox-utilization" />
+        <label for="checkbox">Нужна утилизация отходов на полигоне</label>
+      </div>
+    </div>
+    <div class="result-block">
+      <button class="close-result-button" onclick="tabsCloseButtonHandler()">Закрыть</button>
+      <div class="tabs" id="tabsContainer"></div>
+      <div class="tab-contents" id="contentsContainer"></div>
+    </div>
+  </div>
+  <script src="style.js"></script>
+</body>
+</html>
