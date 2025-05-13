@@ -217,7 +217,6 @@ loadData()
 
 function inputGarbageAddEvent (inputItem, suggestionsBoxItem){
   inputItem.addEventListener('click', () => {
-    console.log('Кликни')
     const matches = inputTipesOfGarbage.map(el => el.name)
     suggestionsBoxItem.innerHTML = ''
     suggestionsBoxItem.style.display = 'block'

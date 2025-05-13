@@ -39,6 +39,16 @@
       border: 1px solid #C3C3C3;
       font-size: 22px;
     }
+    #suggestions{
+      border: 1px solid #ccc;
+      display: none;
+      position: absolute;
+      z-index: 10;
+      width: 300px;
+      background: #fff;
+      max-height: 200px;
+      overflow-y: auto;
+    }
     #suggestionsAddress {
       border: 1px solid #ccc;
       max-height: 200px;
@@ -172,8 +182,8 @@
       <div class="added-form-group-block">
         <div class="added-block">
           <input id="wasteInput" type="text" placeholder="Введите тип мусора" autocomplete="off">
-          <div id="suggestions" style="border: 1px solid #ccc; display: none; position: absolute; z-index: 10; width: 300px; background: #fff; max-height: 200px; overflow-y: auto;"></div>
-          <input type="number" id="volume" required placeholder="Введите объем" min="0">
+          <div id="suggestions"></div>
+          <input type="number" id="volume" required placeholder="Введите объём" min="0">
           <select id="unit">
             <option value="ton">тонн</option>
             <option value="cubic">м³</option>
