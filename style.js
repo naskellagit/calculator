@@ -87,7 +87,6 @@ async function requestDistantsToPoligons(poligons){
   })
 
   const data = await response.json()
-  console.log('данные сервера', data)
 
   const newPoligons = poligons.map((el, index) => ({
     name: el.name,
@@ -132,7 +131,6 @@ async function calculateButtonHandler(){
   }
   // точка
   const newPoligons = await requestDistantsToPoligons(poligonsForRequest)
-  console.log(garbageArr)
   garbageArr.forEach(elem => {
     tabData.push({
       id: elem['Тип мусора'],
