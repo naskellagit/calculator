@@ -216,6 +216,25 @@ async function loadData(){
 loadData()
 
 function inputGarbageAddEvent (inputItem, suggestionsBoxItem){
+  inputItem.addEventListener('click', () => {
+    console.log('Кликни')
+    const matches = inputTipesOfGarbage.map(el => el.name)
+    suggestionsBoxItem.innerHTML = ''
+    suggestionsBoxItem.style.display = 'block'
+    matches.forEach(match => {
+      const div = document.createElement('div')
+      div.textContent = match
+      div.style.padding = '5px'
+      div.style.cursor = 'pointer'
+
+      div.addEventListener('click', () => {
+        inputItem.value = match
+        suggestionsBoxItem.style.display = 'none'
+      })
+
+      suggestionsBoxItem.appendChild(div)
+    })
+  })
   inputItem.addEventListener('input', () => {
     const query = inputItem.value.toLowerCase()
     const matchesObject = inputTipesOfGarbage.filter(type => type.name.toLowerCase().includes(query))
@@ -238,7 +257,7 @@ function inputGarbageAddEvent (inputItem, suggestionsBoxItem){
         })
   
         suggestionsBoxItem.appendChild(div)
-      });
+      })
     } else {
       suggestionsBoxItem.style.display = 'none'
     }
