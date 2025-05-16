@@ -18,40 +18,6 @@ const tabsContainer = document.getElementById("tabsContainer")
 const contentsContainer = document.getElementById("contentsContainer")
 const closeButton = document.querySelector('.close-result-button')
 
-// tabData = [
-//   {
-//     id: "1",
-//     title: "Тип мусора 5",
-//     tableData: [
-//       { col1: "Ячейка 1-1", col2: "Ячейка 1-2", col3: "Ячейка 1-3" },
-//       { col1: "Ячейка 2-1", col2: "Ячейка 2-2", col3: "Ячейка 2-3" },
-//     ]
-//   },
-//   {
-//     id: "tab2",
-//     title: "Таб 2",
-//     tableData: [
-//       { col1: "Ячейка A-1", col2: "Ячейка A-2", col3: "Ячейка A-3" },
-//       { col1: "Ячейка B-1", col2: "Ячейка B-2", col3: "Ячейка B-3" },
-//       { col1: "Ячейка C-1", col2: "Ячейка C-2", col3: "Ячейка C-3" },
-//     ]
-//   },
-//   {
-//     id: "tab3",
-//     title: "Таб 3",
-//     tableData: [
-//       { col1: "Ячейка X-1", col2: "Ячейка X-2", col3: "Ячейка X-3" },
-//     ]
-//   },
-//   {
-//     id: "tab4",
-//     title: "Таб 4",
-//     tableData: [
-//       { col1: "Ячейка X-1", col2: "Ячейка X-2", col3: "Ячейка X-3" },
-//     ]
-//   }
-// ]
-
 function addMore() {
   const container = document.querySelector('.added-form-group-block')
   const firstBlock = container.querySelector('.added-block')
@@ -345,15 +311,6 @@ function tabsInit(){
     // Таблица с данными
     const tableElement = document.createElement("table");
     tableElement.classList.add("tab-table");
-  
-    // Заголовки таблицы
-    // const headerRow = document.createElement("tr");
-    // ["Столбец 1", "Столбец 2", "Столбец 3"].forEach(header => {
-    //   const th = document.createElement("th");
-    //   th.textContent = header;
-    //   headerRow.appendChild(th);
-    // });
-    // tableElement.appendChild(headerRow);
   
     // Данные таблицы
     tab.tableData.forEach((rowData) => {
