@@ -6,7 +6,49 @@ let inputTipesOfGarbage = []
 let poligonsForGarbage = []
 let addresses = []
 let currentAddress = {}
-let tabData = []
+let tabData = [
+  {
+    id: 'Грунт',
+    title: 'Грунт',
+    tableData: [
+      {
+        col1: {
+          title: 'Полигон №2',
+          value: 'ул. Барыгина-Амурского, д. 33'
+        },
+        col2: {
+          title: 'До полигона',
+          value: 45 + ' км'
+        },
+        col3: {
+          title: 200 + ' ₽',
+          value: ''
+        }
+      }
+    ]
+  },
+  {
+    id: 'Кирпичный бой',
+    title: 'Кирпичный бой',
+    tableData: [
+      {
+        col1: {
+          title: 'Полигон №1',
+          value: 'ул. Треналовская, д. 16'
+        },
+        col2: {
+          title: 'До полигона',
+          value: 10 + ' км'
+        },
+        col3: {
+          title: 100 + ' ₽',
+          value: ''
+        }
+      }
+    ]
+  },
+  
+]
 
 const input = document.getElementById('wasteInput') // выбор типа мусора
 const suggestionsBox = document.getElementById('suggestions') // подсказки для типа мусора
@@ -28,7 +70,12 @@ function addMore() {
       const suggestionsBox = newBlock.querySelector('#suggestions')
       inputGarbageAddEvent(input, suggestionsBox)
     }
-  }) // Очищаем поля
+  })
+  const removeRowButton = newBlock.querySelector('.close-added-item-block')
+  removeRowButton.style.visibility = 'visible'
+  removeRowButton.addEventListener('click', () => {
+    newBlock.remove()
+  })
   container.appendChild(newBlock); // Добавляем на страницу
 }
 
@@ -63,6 +110,8 @@ async function requestDistantsToPoligons(poligons){
 }
 
 async function calculateButtonHandler(){
+  tabsInit()
+  return
   tabsCloseButtonHandler()
   if(!inputAddress.value){
     alert('Пожалуйста, укажите адрес!')
@@ -368,6 +417,6 @@ function tabsCloseButtonHandler(){
 inputGarbageAddEvent(input, suggestionsBox)
 inputAddressAddEvent(inputAddress, suggestionsAddressContainer)
 
-tabsInit()
+// tabsInit()
 
 

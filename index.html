@@ -12,8 +12,10 @@
       padding: 0;
       box-sizing: border-box;
     }
+    body{
+      background-color: #EFEEF1;
+    }
     .content {
-      max-width: 1450px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -21,33 +23,81 @@
       font-family: Inter;
     }
     .title {
-      margin: 10px 0 115px 0;
+      margin: 10px 0 47px 0;
       font-size: 46px;
       width: 757px;
       text-align: center;
     }
+    .form-wrapper{
+      max-width: 1240px;
+      width: 100%;
+      padding: 50px 40px;
+      background-color: #fff;
+      border-radius: 20px;
+    }
     .form-group {
       width: 100%;
-      padding: 0 118px;
       display: flex;
       justify-content: space-between;
     }
     input[type="text"], input[type="number"], select {
-      width: 300px;
-      height: 60px;
-      padding: 12px;
-      border: 1px solid #C3C3C3;
-      font-size: 22px;
+      height: 70px;
+      padding: 18px;
+      padding-top: 30px;
+      border: 1px solid #D7D7D9;
+      font-size: 20px;
+      border-radius: 12px;
+    }
+    .address-wrapper{
+      margin-top: 53px;
+    }
+    #address{
+      width: 390px;
+    }
+    .label-input{
+      position: relative;
+      height: 70px;
+    }
+    .label-input input{
+      width: 100%;
+      background: transparent;
+    }
+    .label-input label {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 18px;
+      color: #848484;
+      font-size: 16px;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+    .label-input input:focus ~ label,
+    .label-input input:valid ~ label {
+      top: 15px;
+      font-size: 10px;
+    }
+    .address-icon{
+      position: absolute;
+      top: 8px;
+      right: 18px;
+    }
+    #unit, #volume{
+      width: 160px;
+    }
+    #wasteInput{
+      width: 274px;
     }
     #suggestions{
       border: 1px solid #ccc;
       display: none;
       position: absolute;
       z-index: 10;
-      width: 300px;
+      width: 274px;
       background: #fff;
       max-height: 200px;
       overflow-y: auto;
+      margin-top: 3px;
     }
     #suggestionsAddress {
       border: 1px solid #ccc;
@@ -63,32 +113,55 @@
       cursor: pointer;
     }
     .added-block {
+      display: flex;
+      gap: 12px;
       margin-bottom: 25px;
     }
     .add-button {
       cursor: pointer;
-      font-size: 20px;
-      align-self: flex-start;
-      margin-left: 423px;
+      font-size: 16px;
+      color: #fff;
       margin-bottom: 40px;
+      width: 180px;
+      height: 50px;
+      border-radius: 90px;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .add-button span{
+      position: relative;
+      margin-left: 30px;
+    }
+    .add-button span::before, .add-button span::after{
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: -28px;
+      width: 14px;
+      height: 2px;
+      background-color: #E7F53D;
+    }
+    .add-button span::before{
+      transform: rotate(90deg);
     }
     .calculate-button-block {
       display: flex;
       align-items: center;
-      gap: 20px;
-      align-self: flex-end;
-      font-size: 22px;
-      padding-right: 115px;
-      margin-bottom: 30px;
+      justify-content: center;
+      width: 100%;
+      margin: 82px 0 30px;
     }
     .calculate-button-block button {
-      width: 300px;
-      height: 60px;
+      width: 332px;
+      height: 84px;
+      border-radius: 90px;
+      font-size: 28px;
       border: none;
-      background-color: #A2A2A2;
+      background-color: #E7F53D;
       cursor: pointer;
-      font-size: inherit;
-      color: #fff;
+      color: #000;
       position: relative;
     }
     .calculate-button-block button:active {
@@ -98,11 +171,6 @@
     input[type="checkbox"] {
       width: 30px;
       height: 30px;
-    }
-    .checkbox-block {
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
     .result-block{
       width: 100%;
@@ -125,7 +193,7 @@
       border-bottom: none;
       background-color: #f9f9f9;
     }
-    .tab.active {
+    .tab .active {
       background-color: white;
       font-weight: bold;
     }
@@ -141,9 +209,7 @@
 
     .tab-table {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-family: sans-serif;
+      margin-top: 0px;
     }
 
     .tab-table th,
@@ -169,34 +235,146 @@
     .tab-contents{
       margin-bottom: 10px;
     }
+    .no-arrows::-webkit-outer-spin-button,
+    .no-arrows::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: textfield;
+      margin: 0;
+    }
+    .select-wrapper {
+      position: relative;
+    }
+    .select-wrapper label{
+      position: absolute;
+      left: 18px;
+      top: 10px;
+      color: #848484;
+      font-size: 10px;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+    .select-item{
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      padding-top: 28px;
+    }
+    .close-added-item-block{
+      width: 18px;
+      height: 18px;
+      background-color: #D0D0D4;
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      visibility: hidden;
+    }
+    .close-added-item-block::before, .close-added-item-block::after{
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+    }
+    .close-added-item-block::before{
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    .close-added-item-block::after{
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    .custom-checkbox {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      
+    }
+    .custom-checkbox input {
+      display: none; /* скрываем стандартный чекбокс */
+    }
+    .custom-checkbox .checkmark {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #C3C3C3;
+      border-radius: 6px;
+      margin-right: 15px;
+      position: relative;
+      box-sizing: border-box;
+    }
+    .custom-checkbox input:checked + .checkmark::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      background-color: #000;
+    }
   </style>
 </head>
 <body>
   <div class="content">
     <h2 class="title">Калькулятор расчета стоимости вывоза строительного мусора</h2>
-    <form class="form-group">
-      <div>
-        <input type="text" placeholder="Введите адрес" id="address" autocomplete="off">
-        <div id="suggestionsAddress" style="display: none;"></div>
-      </div>
-      <div class="added-form-group-block">
-        <div class="added-block">
-          <input id="wasteInput" type="text" placeholder="Введите тип мусора" autocomplete="off">
-          <div id="suggestions"></div>
-          <input type="number" id="volume" required placeholder="Введите объём" min="0">
-          <select id="unit">
-            <option value="ton">тонн</option>
-            <option value="cubic">м³</option>
-          </select>
+    <div class="form-wrapper">
+      <form class="form-group">
+        <div class="label-input address-wrapper">
+          <input type="text" id="address" autocomplete="off" required>
+          <label for="address">Адрес вывоза мусора</label>
+          <div id="suggestionsAddress" style="display: none;"></div>
+          <div class="address-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_25_59)">
+                <path d="M10 13.75C13.1066 13.75 15.625 11.2316 15.625 8.125C15.625 5.0184 13.1066 2.5 10 2.5C6.8934 2.5 4.375 5.0184 4.375 8.125C4.375 11.2316 6.8934 13.75 10 13.75Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 13.75V18.125" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_25_59">
+                  <rect width="20" height="20" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
         </div>
-      </div>
-    </form>
-    <span class="add-button" onclick="addMore()">+ добавить ещё</span>
-    <div class="calculate-button-block">
-      <button onclick="calculateButtonHandler()">Расчитать</button>
-      <div class="checkbox-block">
-        <input type="checkbox" id="checkbox-utilization" />
-        <label for="checkbox">Нужна утилизация отходов на полигоне</label>
+        <div>
+          <div class="added-form-group-block">
+            <div class="added-block">
+              <div class="label-input">
+                <input id="wasteInput" class="input-item" type="text" autocomplete="off" required>
+                <label for="wasteInput">Тип мусора</label>
+                <div id="suggestions"></div>
+              </div>
+              <div class="label-input">
+                <input id="volume" class="input-item no-arrows" type="number" required min="0">
+                <label for="volume">Объём</label>
+              </div>
+              <div class="select-wrapper">
+                <select id="unit" class="select-item">
+                  <option value="ton">тонн</option>
+                  <option value="cubic">м³</option>
+                </select>
+                <label>Ед. измерения</label>
+              </div>
+              <div class="close-added-item-block"></div>
+            </div>
+            
+          </div>
+          <div class="add-button" onclick="addMore()"><span>добавить</span></div>
+          <label class="custom-checkbox">
+            <input type="checkbox" id="checkbox-utilization" />
+            <span class="checkmark"></span>
+            Нужна утилизация отходов на полигоне
+          </label>
+        </div>
+        
+      </form>
+      <div class="calculate-button-block">
+        <button onclick="calculateButtonHandler()">Расчитать</button>
       </div>
     </div>
     <div class="result-block">
