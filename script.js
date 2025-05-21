@@ -1,3 +1,4 @@
+const sheetId = '1uyONkzWrBBsq1QTk1IYNbAqEekxNlQsFbKrDDWQAMM0' // id таблицы google из url
 const tokenForDaData = '201f081fe6854e687c45aa8ad979c2334c94fd85'
 const tokenForOpenRouteService = '5b3ce3597851110001cf6248642382220b344342b54d1eae75bc69fa'
 const urlApiDaData = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address'
@@ -6,49 +7,337 @@ let inputTipesOfGarbage = []
 let poligonsForGarbage = []
 let addresses = []
 let currentAddress = {}
+// let tabData = []
 let tabData = [
   {
-    id: 'Грунт',
-    title: 'Грунт',
-    tableData: [
-      {
-        col1: {
-          title: 'Полигон №2',
-          value: 'ул. Барыгина-Амурского, д. 33'
-        },
-        col2: {
-          title: 'До полигона',
-          value: 45 + ' км'
-        },
-        col3: {
-          title: 200 + ' ₽',
-          value: ''
-        }
-      }
-    ]
+      "id": "Тип мусора 6",
+      "title": "Тип мусора 6",
+      "tableData": [
+          {
+              "col1": {
+                  "title": "Полигон 2",
+                  "value": "Адрес 2"
+              },
+              "col2": {
+                  "title": "12 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "157500 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 3",
+                  "value": "Адрес 3"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 5",
+                  "value": "Адрес 5"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 6",
+                  "value": "Адрес 6"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 7",
+                  "value": "Адрес 7"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 9",
+                  "value": "Адрес 9"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 10",
+                  "value": "Адрес 10"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "183750 ₽",
+                  "value": ""
+              }
+          }
+      ]
   },
   {
-    id: 'Кирпичный бой',
-    title: 'Кирпичный бой',
-    tableData: [
-      {
-        col1: {
-          title: 'Полигон №1',
-          value: 'ул. Треналовская, д. 16'
-        },
-        col2: {
-          title: 'До полигона',
-          value: 10 + ' км'
-        },
-        col3: {
-          title: 100 + ' ₽',
-          value: ''
-        }
-      }
-    ]
+      "id": "Тип мусора 5",
+      "title": "Тип мусора 5",
+      "tableData": [
+          {
+              "col1": {
+                  "title": "Полигон 1",
+                  "value": "Адрес 1"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 2",
+                  "value": "Адрес 2"
+              },
+              "col2": {
+                  "title": "12 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "571584 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 3",
+                  "value": "Адрес 3"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 5",
+                  "value": "Адрес 5"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 6",
+                  "value": "Адрес 6"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 7",
+                  "value": "Адрес 7"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 9",
+                  "value": "Адрес 9"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 10",
+                  "value": "Адрес 10"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "666848 ₽",
+                  "value": ""
+              }
+          }
+      ]
   },
-  
+  {
+      "id": "Тип мусора 10",
+      "title": "Тип мусора 10",
+      "tableData": [
+          {
+              "col1": {
+                  "title": "Полигон 2",
+                  "value": "Адрес 2"
+              },
+              "col2": {
+                  "title": "12 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "333540 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 3",
+                  "value": "Адрес 3"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 4",
+                  "value": "Адрес 4"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 5",
+                  "value": "Адрес 5"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 7",
+                  "value": "Адрес 7"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 8",
+                  "value": "Адрес 8"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          },
+          {
+              "col1": {
+                  "title": "Полигон 9",
+                  "value": "Адрес 9"
+              },
+              "col2": {
+                  "title": "14 км",
+                  "value": ""
+              },
+              "col3": {
+                  "title": "389130 ₽",
+                  "value": ""
+              }
+          }
+      ]
+  }
 ]
+
+let checkedPoligonAddress = ''
 
 const input = document.getElementById('wasteInput') // выбор типа мусора
 const suggestionsBox = document.getElementById('suggestions') // подсказки для типа мусора
@@ -56,9 +345,28 @@ const inputAddress = document.getElementById("address") // выбор адрес
 const suggestionsAddressContainer = document.getElementById("suggestionsAddress") // подсказки для адреса
 const isUtilization = document.getElementById('checkbox-utilization')
 
+const resultBlock = document.querySelector('.result-block')
 const tabsContainer = document.getElementById("tabsContainer")
 const contentsContainer = document.getElementById("contentsContainer")
-const closeButton = document.querySelector('.close-result-button')
+
+const calculateForm = document.querySelector('.form-group')
+calculateForm.addEventListener('submit', calculateButtonHandler)
+
+const contactForm = document.querySelector('.contact-block__container')
+contactForm.addEventListener('submit', function(e){
+  e.preventDefault()
+  const clientName = this.customerName.value
+  const clientPhone = this.customerPhone.value
+  const isConfirm = this.isConfirm.checked
+  if(!isConfirm){
+    alert('Пожалуйста, подтвердите согласие перед отправкой!')
+    return
+  }
+  console.log('Клиент - ', clientName)
+  console.log('Телефон - ', clientPhone)
+  console.log('Адрес вывоза - ', currentAddress.fullAddress)
+  console.log('Адрес полигона - ', checkedPoligonAddress)
+})
 
 function addMore() {
   const container = document.querySelector('.added-form-group-block')
@@ -109,28 +417,18 @@ async function requestDistantsToPoligons(poligons){
   return newPoligons
 }
 
-async function calculateButtonHandler(){
-  tabsInit()
-  return
+async function calculateButtonHandler(e){
+  e.preventDefault()
+  resultBlock.style.display = 'block'
+  // tabsInit()
+  // return
   tabsCloseButtonHandler()
-  if(!inputAddress.value){
-    alert('Пожалуйста, укажите адрес!')
-    return
-  }
   const blocks = document.querySelectorAll('.added-block')
   const garbageArr = []
   let poligonsForRequest = []
   for(let i = 0; i < blocks.length; i++){
     const garbage = blocks[i].querySelector('#wasteInput')
     const volume = blocks[i].querySelector('#volume')
-    if(!volume.value){
-      alert('Пожалуйста, укажите объем!')
-      return
-    }
-    if(!garbage.value){
-      alert('Пожалуйста, укажите тип мусора!')
-      return
-    }
     const unit = blocks[i].querySelector('#unit')
     const poligonsForGarbageType = poligonsForGarbage.filter(el => el.typeOfGarbageForPoligon.some(item => item.name === garbage.value))
     poligonsForRequest = poligonsForRequest.concat(poligonsForGarbageType.filter(el => !poligonsForRequest.some(item => item.address === el.address)))
@@ -155,11 +453,11 @@ async function calculateButtonHandler(){
         const typeOfGarbage = poligon.typeOfGarbageForPoligon.find(el => el.name === elem['Тип мусора'])
         const unit = elem['Единица измерения']
         const pricePerUnit = unit === 'ton' ? typeOfGarbage.tonPrice : typeOfGarbage.cubicPrice
-        const pricePerUtilization = elem['Утилизация'] ? poligon.priceForDisposal : 0
+        const pricePerUtilization = elem['Утилизация'] ? parseInt(poligon.priceForDisposal) : 0
         const price = findedDistance * elem['Объем'] * pricePerUnit + pricePerUtilization
         return {
           col1: {title: poligon.name, value: poligon.address},
-          col2: {title: 'До полигона', value: findedDistance + ' км'},
+          col2: {title: findedDistance + ' км', value: ''},
           col3: {title: price + ' ₽', value: ''}
         }
       })
@@ -169,7 +467,6 @@ async function calculateButtonHandler(){
 }
 
 async function loadData(){
-  const sheetId = '1dJZ85T_czTLk1GXcElLvrerAFhCbOszvvoT0vmar1-Y' // id таблицы google из url
   const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`
 
   try {
@@ -347,76 +644,95 @@ function inputAddressAddEvent(inputItem, suggestionsContainer){
 }
 
 function tabsInit(){
-  if(tabData.length) closeButton.style.display = 'block'
   tabData.forEach((tab, index) => {
     // Таб
-    const tabElement = document.createElement("div");
+    const tabElement = document.createElement("div")
     tabElement.classList.add("tab");
-    if (index === 0) tabElement.classList.add("active");
-    tabElement.setAttribute("data-tab", tab.id);
+    if (index === 0) tabElement.classList.add("active")
+    tabElement.setAttribute("data-tab", tab.id)
     tabElement.textContent = tab.title;
-    tabsContainer.appendChild(tabElement);
+    tabsContainer.appendChild(tabElement)
   
     // Таблица с данными
-    const tableElement = document.createElement("table");
-    tableElement.classList.add("tab-table");
+    const tableElement = document.createElement("div")
+    tableElement.classList.add("tab-table")
   
     // Данные таблицы
     tab.tableData.forEach((rowData) => {
-      const row = document.createElement("tr");
+      const row = document.createElement("div")
+      row.classList.add('result-table-row')
       Object.values(rowData).forEach((cellData, idx) => {
-        const td = document.createElement("td");
-        if(idx !== 2){
+        const td = document.createElement("div")
+        if(!idx){
+          row.setAttribute("data-address", cellData.value)
+          td.innerHTML = `<div class="tab-lable-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_25_59)">
+                <path d="M10 13.75C13.1066 13.75 15.625 11.2316 15.625 8.125C15.625 5.0184 13.1066 2.5 10 2.5C6.8934 2.5 4.375 5.0184 4.375 8.125C4.375 11.2316 6.8934 13.75 10 13.75Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 13.75V18.125" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_25_59">
+                  <rect width="20" height="20" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>`
+          const container = document.createElement("div")
+          const h4 = document.createElement("h4")
+          h4.textContent = cellData.title
+          container.appendChild(h4)
+          const span = document.createElement("span")
+          span.textContent = cellData.value
+          container.appendChild(span)
+          td.appendChild(container)
+        } else {
           const h4 = document.createElement("h4")
           h4.textContent = cellData.title
           td.appendChild(h4)
-          const span = document.createElement("span")
-          span.textContent = cellData.value
-          td.appendChild(span)
-        } else {
-          const h3 = document.createElement("h3")
-          h3.textContent = cellData.title
-          td.appendChild(h3)
         }
         row.appendChild(td)
-      });
-      tableElement.appendChild(row);
-    });
+      })
+      row.addEventListener('click', () => {
+        const allBlocks = document.querySelectorAll('.result-table-row')
+        allBlocks.forEach(el => el.style.backgroundColor = '#fff')
+        row.style.backgroundColor = '#F8FDB5'
+        checkedPoligonAddress = row.getAttribute('data-address')
+      })
+      tableElement.appendChild(row)
+    })
   
     // Контент для таба
     const contentElement = document.createElement("div");
-    contentElement.classList.add("tab-content");
-    if (index === 0) contentElement.classList.add("active");
+    contentElement.classList.add("tab-content")
+    if (index === 0) contentElement.classList.add("active")
     contentElement.id = tab.id;
-    contentElement.appendChild(tableElement);
-    contentsContainer.appendChild(contentElement);
-  });
+    contentElement.appendChild(tableElement)
+    contentsContainer.appendChild(contentElement)
+  })
   
   // Навешиваем обработчики для табов
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', () => {
       // Убираем активные классы
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'))
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'))
   
       // Активируем выбранный таб
-      tab.classList.add('active');
-      const targetId = tab.getAttribute('data-tab');
-      document.getElementById(targetId).classList.add('active');
-    });
-  });
+      tab.classList.add('active')
+      const targetId = tab.getAttribute('data-tab')
+      document.getElementById(targetId).classList.add('active')
+    })
+  })
 }
 
 function tabsCloseButtonHandler(){
   tabData = []
   tabsContainer.innerHTML = ''
   contentsContainer.innerHTML = ''
-  closeButton.style.display = 'none'
 }
 
 inputGarbageAddEvent(input, suggestionsBox)
 inputAddressAddEvent(inputAddress, suggestionsAddressContainer)
 
 // tabsInit()
-
-

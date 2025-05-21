@@ -54,6 +54,9 @@
     #address{
       width: 390px;
     }
+    #customerName, #phoneNumber{
+      width: 409px;
+    }
     .label-input{
       position: relative;
       height: 70px;
@@ -72,12 +75,16 @@
       pointer-events: none;
       transition: 0.2s ease all;
     }
+    .black-triangle{
+      color: #000;
+      font-size: 16px;
+    }
     .label-input input:focus ~ label,
     .label-input input:valid ~ label {
       top: 15px;
       font-size: 10px;
     }
-    .address-icon{
+    .label-icon{
       position: absolute;
       top: 8px;
       right: 18px;
@@ -146,14 +153,22 @@
     .add-button span::before{
       transform: rotate(90deg);
     }
-    .calculate-button-block {
+    .calculate-button-block,
+    .contact-button-block {
       display: flex;
       align-items: center;
-      justify-content: center;
+      /* justify-content: center; */
+      transform: translateX(-18%);
       width: 100%;
-      margin: 82px 0 30px;
+      margin: 82px 0 0;
     }
-    .calculate-button-block button {
+    .contact-button-block{
+      justify-content: center;
+      transform: none;
+    }
+
+    .calculate-button-block button,
+    .contact-button-block button {
       width: 332px;
       height: 84px;
       border-radius: 90px;
@@ -164,7 +179,8 @@
       color: #000;
       position: relative;
     }
-    .calculate-button-block button:active {
+    .calculate-button-block button:active,
+    .contact-button-block button:active {
       top: 1px;
       right: 1px;
     }
@@ -173,68 +189,56 @@
       height: 30px;
     }
     .result-block{
+      max-width: 1240px;
       width: 100%;
-      padding: 0 118px;
       position: relative;
-    }
-    .close-result-button{
-      position: absolute;
-      right: 118px;
+      margin-top: 43px;
       display: none;
+      margin-bottom: 90px;
     }
     .tabs {
       display: flex;
       cursor: pointer;
-      margin-bottom: 10px;
+      height: 71px;
+      font-size: 20px;
     }
     .tab {
-      padding: 10px 20px;
-      border: 1px solid #ccc;
-      border-bottom: none;
-      background-color: #f9f9f9;
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      background-color: #000;
+      position: relative;
     }
-    .tab .active {
-      background-color: white;
-      font-weight: bold;
+    .tab::after{
+      content: '';
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #EFEEF1;
+      top: 0;
+      right: 0;
+      transform: translate(65%, -65%);
+    }
+    .tab.active {
+     color: #000;
+     background-color: #fff;
+    }
+    .tab.active::after{
+      content: none;
     }
     .tab-content {
       display: none;
-      border: 1px solid #ccc;
-      padding: 15px;
+      padding: 52px 37px;
       background-color: white;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
     .tab-content.active {
       display: block;
     }
 
-    .tab-table {
-      width: 100%;
-      margin-top: 0px;
-    }
-
-    .tab-table th,
-    .tab-table td {
-      /* border: 1px solid #ccc; */
-      padding: 8px 12px;
-      text-align: left;
-    }
-
-    .tab-table th {
-      background-color: #f4f4f4;
-      font-weight: bold;
-    }
-
-    .tab-table tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-
-    .tab-table tr:hover {
-      background-color: #eef;
-      transition: background-color 0.2s;
-    }
-    .tab-contents{
-      margin-bottom: 10px;
-    }
     .no-arrows::-webkit-outer-spin-button,
     .no-arrows::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -252,6 +256,11 @@
       font-size: 10px;
       pointer-events: none;
       transition: 0.2s ease all;
+    }
+    .select-wrapper span{
+      position: absolute;
+      left: 65px;
+      top: 30px
     }
     .select-item{
       appearance: none;
@@ -294,10 +303,10 @@
       
     }
     .custom-checkbox input {
-      display: none; /* скрываем стандартный чекбокс */
+      display: none;
     }
     .custom-checkbox .checkmark {
-      width: 30px;
+      min-width: 30px;
       height: 30px;
       border: 1px solid #C3C3C3;
       border-radius: 6px;
@@ -316,6 +325,71 @@
       border-radius: 3px;
       background-color: #000;
     }
+    .custom-checkbox.contact{
+      font-size: 10px;
+    }
+
+
+    .result-table-row{
+      display: flex;
+      height: 78px;
+      border-radius: 10px;
+    }
+    .result-table-row > div:nth-child(1){
+      width: 62%;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 0 26px;
+      font-size: 18px;
+    }
+    .result-table-row > div:nth-child(1) span{
+      font-size: 14px;
+      opacity: 50%;
+    }
+    .result-table-row > div:nth-child(2), .result-table-row > div:nth-child(3){
+      width: 19%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .result-header{
+      max-width: 885px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .result-header__title{
+      font-size: 46px;
+      margin-bottom: 18px;
+    }
+    .result-header__description{
+      font-size: 14px;
+      text-align: center;
+      color: #707070;
+      margin-bottom: 45px;
+    }
+    .contact-block{
+      margin-top: 94px;
+    }
+    .contact-block__title h4{
+      text-align: center;
+      font-size: 46px;
+      margin-bottom: 52px;
+    }
+    .contact-block__inputs{
+      display: flex;
+      gap: 18px;
+      margin-bottom: 56px;
+    }
+    .contact-block__container{
+      padding: 45px 37px;
+      background-color: #fff;
+      border-radius: 20px;
+    }
   </style>
 </head>
 <body>
@@ -327,7 +401,7 @@
           <input type="text" id="address" autocomplete="off" required>
           <label for="address">Адрес вывоза мусора</label>
           <div id="suggestionsAddress" style="display: none;"></div>
-          <div class="address-icon">
+          <div class="label-icon">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_25_59)">
                 <path d="M10 13.75C13.1066 13.75 15.625 11.2316 15.625 8.125C15.625 5.0184 13.1066 2.5 10 2.5C6.8934 2.5 4.375 5.0184 4.375 8.125C4.375 11.2316 6.8934 13.75 10 13.75Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -345,13 +419,41 @@
           <div class="added-form-group-block">
             <div class="added-block">
               <div class="label-input">
-                <input id="wasteInput" class="input-item" type="text" autocomplete="off" required>
-                <label for="wasteInput">Тип мусора</label>
+                <input id="wasteInput" type="text" autocomplete="off" required>
+                <label for="wasteInput">Тип мусора <span class="black-triangle">▼</span></label>
+                <div class="label-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_25_11)">
+                      <path d="M10 8.4375C11.7259 8.4375 13.125 7.03839 13.125 5.3125C13.125 3.58661 11.7259 2.1875 10 2.1875C8.27411 2.1875 6.875 3.58661 6.875 5.3125C6.875 7.03839 8.27411 8.4375 10 8.4375Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14.6875 16.5625C16.4134 16.5625 17.8125 15.1634 17.8125 13.4375C17.8125 11.7116 16.4134 10.3125 14.6875 10.3125C12.9616 10.3125 11.5625 11.7116 11.5625 13.4375C11.5625 15.1634 12.9616 16.5625 14.6875 16.5625Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M5.3125 16.5625C7.03839 16.5625 8.4375 15.1634 8.4375 13.4375C8.4375 11.7116 7.03839 10.3125 5.3125 10.3125C3.58661 10.3125 2.1875 11.7116 2.1875 13.4375C2.1875 15.1634 3.58661 16.5625 5.3125 16.5625Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_25_11">
+                        <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
                 <div id="suggestions"></div>
               </div>
               <div class="label-input">
-                <input id="volume" class="input-item no-arrows" type="number" required min="0">
+                <input id="volume" class="no-arrows" type="number" required min="0">
                 <label for="volume">Объём</label>
+                <div class="label-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_25_24)">
+                      <path d="M17.5 13.8515V6.14841C17.4994 6.03714 17.4695 5.928 17.4132 5.83199C17.357 5.73597 17.2764 5.65648 17.1797 5.60154L10.3047 1.73435C10.2121 1.68087 10.107 1.65271 10 1.65271C9.89303 1.65271 9.78795 1.68087 9.69531 1.73435L2.82031 5.60154C2.72356 5.65648 2.643 5.73597 2.58676 5.83199C2.53052 5.928 2.5006 6.03714 2.5 6.14841V13.8515C2.5006 13.9628 2.53052 14.072 2.58676 14.168C2.643 14.264 2.72356 14.3435 2.82031 14.3984L9.69531 18.2656C9.78795 18.3191 9.89303 18.3472 10 18.3472C10.107 18.3472 10.2121 18.3191 10.3047 18.2656L17.1797 14.3984C17.2764 14.3435 17.357 14.264 17.4132 14.168C17.4695 14.072 17.4994 13.9628 17.5 13.8515Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M17.4141 5.82812L10.0703 10L2.58594 5.82812" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M10.0703 10L10 18.3438" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_25_24">
+                        <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
               </div>
               <div class="select-wrapper">
                 <select id="unit" class="select-item">
@@ -359,10 +461,24 @@
                   <option value="cubic">м³</option>
                 </select>
                 <label>Ед. измерения</label>
+                <span>▼</span>
+                <div class="label-icon">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_25_49)">
+                      <path d="M4.375 7.5L1.875 10L4.375 12.5" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M15.625 7.5L18.125 10L15.625 12.5" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M1.875 10H18.125" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_25_49">
+                        <rect width="20" height="20" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
               </div>
               <div class="close-added-item-block"></div>
             </div>
-            
           </div>
           <div class="add-button" onclick="addMore()"><span>добавить</span></div>
           <label class="custom-checkbox">
@@ -370,17 +486,72 @@
             <span class="checkmark"></span>
             Нужна утилизация отходов на полигоне
           </label>
+          <div class="calculate-button-block">
+            <button type="submit">Рассчитать</button>
+          </div>
         </div>
-        
       </form>
-      <div class="calculate-button-block">
-        <button onclick="calculateButtonHandler()">Расчитать</button>
-      </div>
+      
     </div>
     <div class="result-block">
-      <button class="close-result-button" onclick="tabsCloseButtonHandler()">Закрыть</button>
+      <div class="result-header">
+        <p class="result-header__title">Результаты расчета</p>
+        <p class="result-header__description">В калькуляторе представлена приблизительная стоимость, основанная на средних значениях плотности материалов. 
+          Фактический вес может незначительно отличаться, в зависимости от состава и влажности отходов.</p>
+      </div>
       <div class="tabs" id="tabsContainer"></div>
       <div class="tab-contents" id="contentsContainer"></div>
+      <div class="contact-block">
+        <div class="contact-block__title">
+          <h4>Заказать вывоз строительного мусора</h4>
+        </div>
+        <form class="contact-block__container">
+          <div class="contact-block__inputs">
+            <div class="label-input">
+              <input name="customerName" type="text" id="customerName" autocomplete="off" required>
+              <label for="customerName">Ваше имя</label>
+              <div class="label-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_14_226)">
+                    <path d="M10 12.5C12.7614 12.5 15 10.2614 15 7.5C15 4.73858 12.7614 2.5 10 2.5C7.23858 2.5 5 4.73858 5 7.5C5 10.2614 7.23858 12.5 10 12.5Z" stroke="#9C9C9C" stroke-width="1.4" stroke-miterlimit="10"/>
+                    <path d="M2.42188 16.875C3.18979 15.5447 4.2944 14.4399 5.62465 13.6718C6.9549 12.9037 8.46392 12.4993 10 12.4993C11.5361 12.4993 13.0451 12.9037 14.3753 13.6718C15.7056 14.4399 16.8102 15.5447 17.5781 16.875" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_14_226">
+                      <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <div class="label-input">
+              <input name="customerPhone" type="text" id="phoneNumber" autocomplete="off" required>
+              <label for="phoneNumber">Контактный номер телефона</label>
+              <div class="label-icon">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g clip-path="url(#clip0_15_244)">
+                    <path d="M7.22656 9.75003C7.8697 11.0782 8.94366 12.1494 10.2734 12.7891C10.3715 12.8355 10.48 12.8556 10.5882 12.8474C10.6965 12.8392 10.8007 12.8029 10.8906 12.7422L12.8437 11.4375C12.93 11.379 13.0298 11.3433 13.1336 11.3337C13.2374 11.3242 13.342 11.3411 13.4375 11.3828L17.0938 12.9532C17.2187 13.0052 17.3231 13.0968 17.3909 13.214C17.4586 13.3311 17.486 13.4673 17.4688 13.6016C17.3529 14.5061 16.9114 15.3373 16.2269 15.9398C15.5424 16.5424 14.6619 16.8748 13.75 16.875C10.9321 16.875 8.22956 15.7556 6.23699 13.763C4.24442 11.7705 3.125 9.06795 3.125 6.25003C3.12521 5.33815 3.45767 4.45759 4.06018 3.77312C4.66269 3.08864 5.49395 2.64716 6.39844 2.53128C6.53269 2.51403 6.66888 2.5414 6.78605 2.60916C6.90322 2.67692 6.99487 2.78132 7.04687 2.90628L8.61719 6.57034C8.65802 6.66436 8.67511 6.76698 8.66693 6.86916C8.65876 6.97134 8.62558 7.06994 8.57031 7.15628L7.26562 9.14065C7.20754 9.2304 7.17345 9.33355 7.16661 9.44024C7.15977 9.54693 7.18041 9.65359 7.22656 9.75003Z" stroke="#9C9C9C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_15_244">
+                      <rect width="20" height="20" fill="white"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <label class="custom-checkbox contact">
+              <input name="isConfirm" type="checkbox" id="checkbox-contact"/>
+              <span class="checkmark"></span>
+              Нажимая на кнопку “Отправить заявку”, я соглашаюсь с обработкой моих 
+              персональных данных, в соответствии с Политикой в отношении обработки персональных данных.
+            </label>
+          </div>
+          <div class="contact-button-block">
+            <button type="submit">Отправить</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
