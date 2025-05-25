@@ -12,7 +12,7 @@
     <h2 class="title">Калькулятор расчета стоимости вывоза строительного мусора</h2>
     <div class="form-wrapper">
       <form class="form-group">
-        <div class="label-input address-wrapper">
+        <div class="label-input address-wrapper left-block-for-svg-lines">
           <input type="text" id="address" autocomplete="off" required>
           <label for="address">Адрес вывоза мусора</label>
           <div id="suggestionsAddress" style="display: none;"></div>
@@ -33,9 +33,14 @@
         <div style="display: flex; flex-direction: column;">
           <div class="added-form-group-block">
             <div class="added-block">
-              <div class="label-input">
+              <div class="label-input right-blocks-for-svg-lines">
                 <input id="wasteInput" type="text" autocomplete="off" required>
-                <label for="wasteInput">Тип мусора <span class="black-triangle">▼</span></label>
+                <label for="wasteInput">
+                  Тип мусора
+                  <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.71679 5.01341C4.11715 5.51774 4.88285 5.51774 5.28321 5.01341L7.9757 1.62176C8.49596 0.966397 8.02925 0 7.19249 0H1.80751C0.970755 0 0.504042 0.966398 1.0243 1.62176L3.71679 5.01341Z" fill="black"/>
+                  </svg>
+                </label>
                 <div class="label-icon">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_25_11)">
@@ -76,7 +81,9 @@
                   <option value="cubic">м³</option>
                 </select>
                 <label>Ед. измерения</label>
-                <span>▼</span>
+                <svg class="select-unit-svg" width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.71679 5.01341C4.11715 5.51774 4.88285 5.51774 5.28321 5.01341L7.9757 1.62176C8.49596 0.966397 8.02925 0 7.19249 0H1.80751C0.970755 0 0.504042 0.966398 1.0243 1.62176L3.71679 5.01341Z" fill="black"/>
+                </svg>
                 <div class="label-icon">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_25_49)">
@@ -105,6 +112,7 @@
             <button type="submit">Рассчитать</button>
           </div>
         </div>
+        <svg id="svgLines"></svg>
       </form>
     </div>
     <div class="form-wrapper__technical-block"></div>
