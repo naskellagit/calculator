@@ -12,8 +12,8 @@ let tabData = []
 // Это для того чтобы стразу можно было нажать расчитать
 
 // document.querySelectorAll('input').forEach(input => {
-//   input.removeAttribute('required');
-// });
+//   input.removeAttribute('required')
+// })
 
 let checkedPoligonAddress = ''
 
@@ -63,7 +63,7 @@ function addMore() {
     newBlock.remove()
     drawLines()
   })
-  container.appendChild(newBlock); // Добавляем на страницу
+  container.appendChild(newBlock) // Добавляем на страницу
   drawLines()
 }
 
@@ -152,9 +152,9 @@ async function loadData(){
   const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json`
 
   try {
-    const response = await fetch(url);
-    const text = await response.text();
-    const json = JSON.parse(text.substring(47).slice(0, -2)); // убираем обёртку Google
+    const response = await fetch(url)
+    const text = await response.text()
+    const json = JSON.parse(text.substring(47).slice(0, -2)) // убираем обёртку Google
     const rows = json.table.rows
 
     const typeOfGarbage = []
@@ -329,10 +329,10 @@ function tabsInit(){
   tabData.forEach((tab, index) => {
     // Таб
     const tabElement = document.createElement("div")
-    tabElement.classList.add("tab");
+    tabElement.classList.add("tab")
     if (index === 0) tabElement.classList.add("active")
     tabElement.setAttribute("data-tab", tab.id)
-    tabElement.textContent = tab.title;
+    tabElement.textContent = tab.title
     tabsContainer.appendChild(tabElement)
   
     // Таблица с данными
@@ -383,10 +383,10 @@ function tabsInit(){
     })
   
     // Контент для таба
-    const contentElement = document.createElement("div");
+    const contentElement = document.createElement("div")
     contentElement.classList.add("tab-content")
     if (index === 0) contentElement.classList.add("active")
-    contentElement.id = tab.id;
+    contentElement.id = tab.id
     contentElement.appendChild(tableElement)
     contentsContainer.appendChild(contentElement)
   })
@@ -424,32 +424,32 @@ inputGarbageAddEvent(input, suggestionsBox)
 inputAddressAddEvent(inputAddress, suggestionsAddressContainer)
 
 
-
-let counter = 1;
+// Для отрисовки линий svg
+let counter = 1
 
 function getRightCenter(el) {
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   return {
     x: rect.right,
     y: rect.top + rect.height / 2,
-  };
+  }
 }
 
 function getLeftCenter(el) {
-  const rect = el.getBoundingClientRect();
+  const rect = el.getBoundingClientRect()
   return {
     x: rect.left,
     y: rect.top + rect.height / 2,
-  };
+  }
 }
 
 function drawLines() {
   if (window.innerWidth <= 768) return
-  const svg = document.getElementById("svgLines");
-  const left = getRightCenter(document.querySelector(".left-block-for-svg-lines"));
-  const rights = document.querySelectorAll(".right-blocks-for-svg-lines");
+  const svg = document.getElementById("svgLines")
+  const left = getRightCenter(document.querySelector(".left-block-for-svg-lines"))
+  const rights = document.querySelectorAll(".right-blocks-for-svg-lines")
 
-  const svgRect = svg.getBoundingClientRect();
+  const svgRect = svg.getBoundingClientRect()
 
   const defs = `
     <defs>
@@ -458,28 +458,27 @@ function drawLines() {
         <path d="M2 0 L4 2 L2 4 L0 2 Z" fill="#D7D7D9" />
       </marker>
     </defs>
-  `;
+  `
 
   const paths = Array.from(rights).map((el) => {
-    const right = getLeftCenter(el);
+    const right = getLeftCenter(el)
 
-    const x1 = left.x - svgRect.left;
-    const y1 = left.y - svgRect.top;
-    const x2 = right.x - svgRect.left;
-    const y2 = right.y - svgRect.top;
+    const x1 = left.x - svgRect.left
+    const y1 = left.y - svgRect.top
+    const x2 = right.x - svgRect.left
+    const y2 = right.y - svgRect.top
 
-    const cx = (x1 + x2) / 2;
+    const cx = (x1 + x2) / 2
 
     return `<path d="M${x1},${y1} C${cx},${y1} ${cx},${y2} ${x2},${y2}"
       stroke="#D7D7D9" fill="none" stroke-width="2"
-      marker-start="url(#diamond)" marker-end="url(#diamond)"/>`;
-  });
+      marker-start="url(#diamond)" marker-end="url(#diamond)"/>`
+  })
 
-  svg.innerHTML = defs + paths.join("");
-  console.log()
+  svg.innerHTML = defs + paths.join("")
 }
 
-window.addEventListener("load", drawLines);
-window.addEventListener("resize", drawLines);
+window.addEventListener("load", drawLines)
+window.addEventListener("resize", drawLines)
 
 // tabsInit()
