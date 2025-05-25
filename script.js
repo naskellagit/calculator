@@ -61,6 +61,7 @@ function addMore() {
   removeRowButton.style.visibility = 'visible'
   removeRowButton.addEventListener('click', () => {
     newBlock.remove()
+    drawLines()
   })
   container.appendChild(newBlock); // Добавляем на страницу
   drawLines()
