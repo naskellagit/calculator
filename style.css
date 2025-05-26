@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 @font-face {
   font-family: 'Halvar Breitschrift';
-  src: url('./HalvarBreit-Bd.woff') format('woff');
+  src: url('./HalvarBreit-Lt.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,10 +30,10 @@ body{
 .form-wrapper{
   max-width: 1240px;
   width: 100%;
-  padding: 50px 40px;
+  padding: 50px 40px 0;
   background-color: #fff;
   border-radius: 20px;
-  height: 395px;
+  /* height: 395px; */
 }
 .form-wrapper__technical-block{
   width: 100%;
@@ -169,14 +169,16 @@ input[type="text"], input[type="number"], select {
 .contact-button-block {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
-  transform: translateX(-18%);
   width: 100%;
-  margin: 82px 0 0;
+  margin: 20px 0 0;
 }
 .contact-button-block{
   justify-content: center;
   transform: none;
+}
+
+.calculate-button-block{
+  transform: translate(-18%, 50%);
 }
 
 .calculate-button-block button,
@@ -191,6 +193,7 @@ input[type="text"], input[type="number"], select {
   color: #000;
   position: relative;
   font-family: 'Halvar Breitschrift';
+  font-weight: 700;
 }
 .calculate-button-block button:active,
 .contact-button-block button:active {
