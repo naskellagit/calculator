@@ -124,7 +124,6 @@ async function calculateButtonHandler(e){
     }
     garbageArr.push(addedElemrnt)
   }
-  // точка
   const newPoligons = await requestDistantsToPoligons(poligonsForRequest)
   garbageArr.forEach(elem => {
     tabData.push({

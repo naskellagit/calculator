@@ -95,6 +95,9 @@ input[type="text"], input[type="number"], select {
   top: 15px;
   font-size: 10px;
 }
+.label-input input:focus ~ label svg{
+  top: 1px !important
+}
 .label-icon{
   position: absolute;
   top: 8px;
@@ -238,14 +241,10 @@ input[type="checkbox"] {
   background-color: #EFEEF1;
   top: -40px;
   left: 94%;
-  /* transform: translate(65%, -68%); */
 }
 .tab.active {
  color: #000;
  background-color: #fff;
-}
-.tab.active::after{
-  content: none;
 }
 .tab-content {
   display: none;
