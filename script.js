@@ -158,7 +158,7 @@ async function loadData(){
 
     const typeOfGarbage = []
     const poligons = []
-    const SLICES_INDEXES = 5
+    const SLICES_INDEXES = 4
     const garbageArr = rows[0].c.slice(SLICES_INDEXES)
 
     for(let i = 0; i < garbageArr.length; i++){
@@ -198,8 +198,6 @@ async function loadData(){
     })
     inputTipesOfGarbage = typeOfGarbage
     poligonsForGarbage = poligons
-    console.log(poligonsForGarbage)
-    
   } catch (err) {
     console.error('Ошибка при загрузке данных:', err)
   }
