@@ -134,7 +134,7 @@ async function calculateButtonHandler(e){
         const typeOfGarbage = poligon.typeOfGarbageForPoligon.find(el => el.name === elem['Тип мусора'])
         const unit = elem['Единица измерения']
         const pricePerUnit = unit === 'ton' ? typeOfGarbage.tonPrice : typeOfGarbage.cubicPrice
-        const pricePerUtilization = elem['Утилизация'] ? parseInt(poligon.priceForDisposal) : 0
+        const pricePerUtilization = elem['Утилизация'] ? parseInt(typeOfGarbage.disposalPrice) : 0
         const price = findedDistance * elem['Объем'] * pricePerUnit + pricePerUtilization
         return {
           col1: {title: poligon.name, value: poligon.address},
@@ -181,7 +181,7 @@ async function loadData(){
       const availabilityArr = poligon.c.slice(SLICES_INDEXES)
       for(let i = 0; i < typeOfGarbageLength; i++){
         if(availabilityArr[i] && availabilityArr[i].v){
-          typeOfGarbageForPoligon.push(typeOfGarbage[i])
+          typeOfGarbageForPoligon.push({...typeOfGarbage[i], disposalPrice: availabilityArr[i].v})
         }
       }
       const pushedElement = {
@@ -191,13 +191,14 @@ async function loadData(){
           lat: poligon.c[2].v.split(' ')[0],
           lon: poligon.c[2].v.split(' ')[1]
         },
-        priceForDisposal: poligon.c[3] ? poligon.c[3].v : 0,
+        // priceForDisposal: poligon.c[3] ? poligon.c[3].v : 0,
         typeOfGarbageForPoligon
       }
       poligons.push(pushedElement)
     })
     inputTipesOfGarbage = typeOfGarbage
     poligonsForGarbage = poligons
+    console.log(poligonsForGarbage)
     
   } catch (err) {
     console.error('Ошибка при загрузке данных:', err)
